@@ -1,0 +1,71 @@
+@prefix mqtt: <https://data.robbevanherck.be/mqtt#> .
+
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://data.robbevanherck.be/mqtt> a owl:Ontology ;
+    rdfs:Label "MQTT"@en;
+    dcterms:maker [
+        a foaf:Person;
+        foaf:firstName "Robbe";
+        foaf:lastName "Van Herck";
+        foaf:mbox <mailto:robbe@robbevanherck.be>
+    ];
+    dcterms:issued "2021-09-17"^^xsd:date;
+    dcterms:title "MQTT Ontology"@en.
+
+mqtt:Message a owl:Class;
+    rdfs:label "Message"@en;
+    rdfs:comment "A single MQTT message."@en;
+    rdfs:isDefinedBy <https://data.robbevanherck.be/mqtt#>.
+
+mqtt:topic a owl:DatatypeProperty;
+    rdfs:label "topic"@en;
+    rdfs:comment "The topic of an MQTT message."@en;
+    rdfs:domain mqtt:Message;
+    rdfs:range xsd:string;
+    rdfs:isDefinedBy <https://data.robbevanherck.be/mqtt#>.
+
+mqtt:body a owl:DatatypeProperty;
+    rdfs:label "body"@en;
+    rdfs:comment "The body/payload of an MQTT message."@en;
+    rdfs:domain mqtt:Message;
+    rdfs:range xsd:string;
+    rdfs:isDefinedBy <https://data.robbevanherck.be/mqtt#>.
+
+mqtt:retain a owl:DatatypeProperty;
+    rdfs:label "retain"@en;
+    rdfs:comment "Whether or not an MQTT message has the retain flag set."@en;
+    rdfs:domain mqtt:Message;
+    rdfs:range xsd:boolean;
+    rdfs:isDefinedBy <https://data.robbevanherck.be/mqtt#>.
+
+mqtt:qos a owl:ObjectProperty;
+    rdfs:label "qos"@en;
+    rdfs:comment "The QoS (Quality of Service) level set for an MQTT message."@en;
+    rdfs:domain mqtt:Message;
+    rdfs:range mqtt:QoSLevel;
+    rdfs:isDefinedBy <https://data.robbevanherck.be/mqtt#>.
+
+mqtt:QoSLevel a owl:Class;
+    rdfs:label "QoS Level"@en;
+    rdfs:comment "A QoS level."@en;
+    rdfs:isDefinedBy <https://data.robbevanherck.be/mqtt#>.
+
+mqtt:QoSZero a mqtt:QoSLevel;
+    rdfs:label "QoS 0"@en;
+    rdfs:comment "QoS level 0 (at most once)"@en;
+    rdfs:isDefinedBy <https://data.robbevanherck.be/mqtt#>.
+
+mqtt:QoSOne a mqtt:QoSLevel;
+    rdfs:label "QoS 1"@en;
+    rdfs:comment "QoS level 1 (at least once)"@en;
+    rdfs:isDefinedBy <https://data.robbevanherck.be/mqtt#>.
+
+mqtt:QoSTwo a mqtt:QoSLevel;
+    rdfs:label "QoS 2"@en;
+    rdfs:comment "QoS level 2 (exactly once)"@en;
+    rdfs:isDefinedBy <https://data.robbevanherck.be/mqtt#>.
